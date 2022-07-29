@@ -3,7 +3,7 @@
   "author": "stagas",
   "short": "stagas/dokio",
   "description": "Documentation generator for TypeScript projects.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -62,10 +62,10 @@
     "@stagas/jest-node-exports-resolver",
     "bunzee",
     "decarg",
+    "html-jsx",
     "pull-configs",
     "rollup-plugin-debug",
     "vite-open",
-    "html-jsx",
     "wtr-plugin-vite"
   ],
   "devDependencies": {
