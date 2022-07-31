@@ -7,13 +7,17 @@
     "dist",
     "example",
     "node_modules",
-    "test"
+    "test",
+    "types"
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
     "types": [
+      "./types/globals",
+      "./types/modules",
+      "audioworklet",
       "node",
-      "./types/modules"
+      "webmidi"
     ]
   }
 }
