@@ -76,7 +76,7 @@ const Types: Record<any, (...args: any[]) => any> = {
   ),
   tuple: ({ elements }) => (
     <>
-      [{elements.map((type: any) => <TypeNode {...type} />).join(', ')}]
+      [{(elements ?? []).map((type: any) => <TypeNode {...type} />).join(', ')}]
     </>
   ),
   intersection: ({ types }) => (
