@@ -3,7 +3,7 @@
   "author": "stagas",
   "short": "stagas/dokio",
   "description": "Documentation generator for TypeScript projects.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -52,7 +52,7 @@
     "build:min": "bunzee -m src/index.ts \"dist/$(cat package.json | jq -r '.name').min.js\"",
     "lint": "eslint src && dprint check",
     "lint:fix": "eslint --fix src && dprint fmt",
-    "prepack": "npm run clean && npm run build && (npm run build:dist || echo unable to bundle)",
+    "prepack": "npm run clean && npm run build",
     "prepack:dry": "npm pack --dry-run",
     "prepush": "npm run lint && npm run test",
     "prepare": "husky install"

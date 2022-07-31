@@ -4,7 +4,7 @@ const { pullConfigs } = require('pull-configs')
 const local = __dirname + '/'
 const remote = 'https://github.com/stagas/typescript-minimal-template/raw/main/'
 
-const { assign, omit, sort, merge, replace } = pullConfigs(remote, local)
+const { assign, omit, pick, sort, merge, replace } = pullConfigs(remote, local)
 
 merge('package.json', (prev, next) => {
   prev.trustedDependencies ??= []
@@ -12,7 +12,7 @@ merge('package.json', (prev, next) => {
     ...new Set([...prev.trustedDependencies, ...(next.trustedDependencies ?? [])]),
   ].sort()
   prev.types = next.types
-  prev.scripts = next.scripts
+  prev.scripts = Object.assign(next.scripts, pick(prev.scripts, ['prepack']))
   prev.files = next.files
   sort(assign(prev.devDependencies, next.devDependencies))
 
@@ -45,7 +45,7 @@ replace('.gitattributes')
 replace('.gitignore')
 replace('.npmrc')
 replace('.eslintrc.js')
-replace('.pull-configs.js')
+// replace('.pull-configs.js')
 replace('.swcrc')
 replace('dprint.json')
 replace('tsconfig.json')
