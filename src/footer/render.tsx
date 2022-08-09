@@ -20,9 +20,9 @@ ${
   deps.length
     ? `## Credits
 ` + deps.map(dep =>
-      `- [${dep.name}](https://npmjs.org/package/${dep.name}) by [${figureAuthorName(dep)}](${
-        figureAuthorUrl(dep)
-      }) &ndash; ${dep.description}`
+      `- [${dep.name}](https://npmjs.org/package/${dep.name}) by [${figureAuthorName(dep)}](${figureAuthorUrl(dep)}) ${
+        dep.description ? `&ndash; ${dep.description}` : ''
+      }`
     ).join('\n')
     : ''
 }
