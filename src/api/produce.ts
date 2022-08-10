@@ -14,9 +14,7 @@ export const produce = async (): Promise<td.JSONOutput.ProjectReflection | ExitC
   const app = new td.Application()
 
   process.argv.push(
-    ...(`--readme none --emit docs --plugin ${
-      require.resolve('typedoc-plugin-missing-exports')
-    } --excludeExternals --excludeInternal --excludePrivate --excludeProtected`
+    ...(`--readme none --emit docs --excludeExternals --excludeInternal --excludePrivate --excludeProtected`
       .split(' '))
   )
   app.options.addReader(new td.ArgumentsReader(0))
