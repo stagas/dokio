@@ -56,7 +56,7 @@ const Example = ({ name, fileName, lang, screenshot, screenshotDimensions, link,
         <details
           id={`source$${name}`}
           title={`${name} source code`}
-          open={!screenshot && numberOfLines(contents) < 15}
+          open={!screenshot && numberOfLines(contents) < 30}
         >
           <summary>
             <span>
