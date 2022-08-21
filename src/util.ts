@@ -1,4 +1,6 @@
 import markdown from 'markdown-it'
+import * as os from 'os'
+import * as path from 'path'
 
 // const entities = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
@@ -31,9 +33,13 @@ ${trimLines(str)}
 </p>
 `
 
+const cwd = process.cwd()
+
 export const sourcePath = (data: any) => {
-  const fileName = data.sources[0].fileName.split('src/').pop()
-  return `src/${fileName}#L${data.sources[0].line}`
+  let pathname = path.join(os.homedir(), data.sources[0].fileName)
+  if (pathname.indexOf(cwd) !== 0) return ''
+  pathname = path.relative(cwd, pathname)
+  return `${pathname}#L${data.sources[0].line}`
 }
 
 export const prettyBytes = (x: number) =>
