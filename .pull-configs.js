@@ -4,15 +4,14 @@ const { pullConfigs } = require('pull-configs')
 const local = __dirname + '/'
 const remote = 'https://github.com/stagas/typescript-minimal-template/raw/main/'
 
-const { assign, omit, pick, sort, merge, replace } = pullConfigs(remote, local)
+const { assign, omit, sort, merge, replace } = pullConfigs(remote, local)
 
 merge('package.json', (prev, next) => {
-  prev.trustedDependencies ??= []
-  prev.trustedDependencies = [
-    ...new Set([...prev.trustedDependencies, ...(next.trustedDependencies ?? [])]),
-  ].sort()
+  // deprecated: now using ~/.trusted-npm-deps per system configuration
+  delete prev.trustedDependencies
+
   prev.types = next.types
-  prev.scripts = Object.assign(next.scripts, pick(prev.scripts, ['prepack']))
+  prev.scripts = next.scripts
   prev.files = next.files
   sort(assign(prev.devDependencies, next.devDependencies))
 
@@ -33,19 +32,19 @@ merge('package.json', (prev, next) => {
   delete prev.devDependencies['terser']
   delete prev.devDependencies['vite-web-test-runner-plugin']
   delete prev.devDependencies['@swc-node/jest']
-  delete prev.devDependencies['chokidar']
   delete prev.devDependencies['jest']
   delete prev.devDependencies['jest-browser-globals']
   delete prev.devDependencies['ts-jest']
   delete prev.devDependencies['ts-node']
   delete prev.devDependencies['wtr-plugin-vite']
   delete prev.devDependencies['@stagas/jest-node-exports-resolver']
+  delete prev.devDependencies['vite-open']
 })
 replace('.gitattributes')
 replace('.gitignore')
 replace('.npmrc')
 replace('.eslintrc.js')
-// replace('.pull-configs.js')
+replace('.pull-configs.js')
 replace('.swcrc')
 replace('dprint.json')
 replace('tsconfig.json')
